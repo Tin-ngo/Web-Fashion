@@ -24,13 +24,15 @@
     <div class="admin_main">
         <div class="grid_row">
             <div class="admin_left">
-                <div class="left_head">
-                    <img src="../assets/img/logo_giaphat.jpg" alt="">
-                    <div class="left_head__text">
-                        <span>MY FASHION</span>
-                        <p>Cửa hàng thời trang </p>
+                <a href="../">
+                    <div class="left_head">
+                        <img src="../assets/img/logo_giaphat.jpg" alt="">
+                        <div class="left_head__text">
+                            <span>MY FASHION</span>
+                            <p>Cửa hàng thời trang </p>
+                        </div>
                     </div>
-                </div>
+                </a>
                 <div class="left_body">
                     <ul class="nav-list">
                         <li class="nav-list__item">
@@ -85,12 +87,12 @@
                         <img src="../assets/img/logo_giaphat.jpg" alt="">
                         <h6>
                             <?php
-                                if(isset($_SESSION['userName']) && $_SESSION['userName']!=null){
-                                    echo $_SESSION['userName'];
-                                    echo "<a href='logout.php'>Logout</a>";
-                                }else{
-                                    echo "Unidentified";
-                                }
+                            if(isset($_SESSION['userName']) && $_SESSION['userName']!=null){
+                                echo $_SESSION['userName'];
+                                echo "<a href='../logout.php'>Logout</a>";
+                            }else{
+                                echo "Unidentified";
+                            }
                             ?>
                         </h6>
                     </div>
@@ -100,15 +102,15 @@
 
 
                 	<?php 
-                        if(isset($_SESSION['userName']) && $_SESSION['userName']!=null){
-                            require "dieuhuong.php"; 
-                        }else{
-                            echo "Bạn chưa login";
-                            echo " => ";
-                            echo "<a href='login.php'>login</a>";
-                        }
+                    if(isset($_SESSION['userName']) && $_SESSION['userName']!=null){
+                        require "dieuhuong.php"; 
+                    }else{
+                        echo "Bạn chưa login";
+                        echo " => ";
+                        echo "<a href='../login.php'>login</a>";
+                    }
                     ?>
-                
+
 
                 </div>
             </div>

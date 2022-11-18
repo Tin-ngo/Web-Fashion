@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,9 @@
     <link rel="stylesheet" href="assets/css/client/base.css">
     <link rel="stylesheet" href="assets/css/client/main.css">
     <link rel="stylesheet" href="assets/css/client/cuahang.css">
+    <link rel="stylesheet" href="assets/css/client/chitietsp.css">
+    <link rel="stylesheet" href="assets/css/client/cart.css">
+    <link rel="stylesheet" href="assets/css/client/pay.css">
     <!-- themify icons -->
     <!-- <link rel="stylesheet" href="assets/themify-icons/themify-icons.css"> -->
     <!-- fontawesome -->
@@ -51,8 +55,12 @@ crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 crossorigin="anonymous"></script>
+
+<!-- Jquery -->
+<script src="assets/js/jquery/jquery.js"></script>
 <!-- javascript -->
-<script src="assets/js/admin/main.js"></script>
+<script src="assets/js/web/main.js"></script>
+<script src="assets/js/web/pay.js"></script>
 </body>
 
 </html>

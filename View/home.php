@@ -80,13 +80,13 @@
 								<p class="price__product">
 									<?=$value['productUnitPrice']?>
 								</p>
-								<a class="show-product__home__item--btn" href="#">
+								<a class="show-product__home__item--btn" href="?act=details&id=<?=$value['idProduct']?>">
 									Xem chi tiết
 								</a>
 							</div>
 						<?php } ?>
 					</div>
-					<a class="body-content__item--more" href="#">
+					<a class="body-content__item--more" href="?act=cuahang&topSelling=1">
 						Xem thêm 
 						<i class="fas fa-angle-double-right"></i>
 					</a>
@@ -110,11 +110,11 @@
 									<?= $value['productName']?>
 								</p>
 								<p class="price__product"><?= $value['productUnitPrice']?></p>
-								<a class="show-product__home__item--btn" href="#">Xem chi tiết</a>
+								<a class="show-product__home__item--btn" href="?act=details&id=<?= $value['idProduct']?>">Xem chi tiết</a>
 							</div>
 						<?php } ?>
 					</div>
-					<a class="body-content__item--more" href="#">
+					<a class="body-content__item--more" href="?act=cuahang&latest=1">
 						Xem thêm 
 						<i class="fas fa-angle-double-right"></i>
 					</a>

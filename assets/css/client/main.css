@@ -519,3 +519,9 @@
 .footer-coppyright a{
     color: var(--white-color);
 }
+
+.btn-modify{
+    padding: 0;
+    outline: none;
+    border-color: transparent;
+}

@@ -16,7 +16,8 @@ $(document).ready(function(){
 			success: function(data){
 				var userName = data['lastName'] + "_" + data['firstName']
 				var idUser = data['idUser']
-					window.location = "http://localhost:8080/WORK_SPACE/dacn1_fashion/admin/login_handle.php?userName="+userName+"&idUser="+idUser
+				var idDivision = data['idDivision']
+				window.location = "http://localhost:8080/WORK_SPACE/dacn1_fashion/login_handle.php?userName="+userName+"&idUser="+idUser+"&idDivision="+idDivision
 				}
 			});
 	})

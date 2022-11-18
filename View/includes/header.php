@@ -27,7 +27,21 @@
 					<i class="far fa-user header-top--icon"></i>
 					<div class="header-top__content_item header-top__account">
 						<span>Tài khoản</span>
-						<p>Đăng nhập</p>
+						<?php if(isset($_SESSION['idDivision']) && isset($_SESSION['userName']) && isset($_SESSION['idUser']) ){ ?>
+							<div class="dropdown">
+								<button class="btn btn-modify" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<?php echo $_SESSION['userName'].' '.$_SESSION['idUser'];?>
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<?php if($_SESSION['idDivision'] == 2){ ?>
+										<a class="dropdown-item" href="admin">Admin</a>
+									<?php } ?>
+									<a class="dropdown-item" href="logout.php">Logout</a>
+								</div>
+							</div>
+						<?php }else{ ?>
+							<p><a href="./login.php">Đăng nhập</a></p>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -40,8 +54,18 @@
 						<i class="fas fa-random"></i>
 					</div>
 					<div class="header-top__interactive__item header-top__interactive__item--cart">
-						<i class="fas fa-shopping-cart"></i>
-						<span class="notice">2</span>
+						<a href="?act=cart">
+							<i class="fas fa-shopping-cart"></i>
+						</a>
+						<span class="notice">
+							<?php 
+							if(!empty($_SESSION['quantity_cart'])){
+								echo $_SESSION['quantity_cart'];
+							}else{
+								echo "0";
+							}
+							?>
+						</span>
 					</div>
 				</div>
 			</div>

@@ -15,7 +15,13 @@ class Users extends Model
 
     public function findUserFull($idUser){
         $query = "SELECT * FROM user INNER JOIN account ON user.idUser = account.idUser WHERE user.idUser = ".$idUser;
-        return $this->conn->query($query)->fetch_assoc();
+        // return $this->conn->query($query)->fetch_assoc();
+        $result = $this->conn->query($query);
+        $data = array();
+        while($row = $result->fetch_assoc()){
+            $data[] = $row;
+        }
+        return $data;
 
     }
 

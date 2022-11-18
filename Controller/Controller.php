@@ -1,4 +1,5 @@
 <?php 
+session_start();
 class Controller{
 	function __construct(){
 
@@ -28,9 +29,11 @@ class Controller{
 
 		// copy mảng $result sang $data nhưng không lấy cái status 
 		$data = array();
-		foreach($result as $key=>$value){
-			if(is_numeric($key)){
-				$data[] = $value;
+		if(!empty($result)){
+			foreach($result as $key=>$value){
+				if(is_numeric($key)){
+					$data[] = $value;
+				}
 			}
 		}
 
@@ -47,23 +50,23 @@ class Controller{
 	}
 
 
-	public function Find($url){
-		$client = curl_init($url);
-		curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
-		$response = curl_exec($client); 
-		$result = json_decode($response, TRUE);
+	public function insert_curl($idUser, $idProduct, $quantityOrder){
+		// URL có chứa hai thông tin name và diachi
+		$url = "http://localhost:8080/WORK_SPACE/dacn1_fashion/RestAPI/order/create.php?idUser=".$idUser."&idProduct=".$idProduct."&quantityOrder=".$quantityOrder;
 
-		$data = array();
-		foreach($result as $key=>$value){
-			if(is_numeric($key)){
-				$data[] = $value;
-			}
-		}
-		//var_dump($data);
-		// ngắt curl - giải phóng
-		curl_close($client);
-		return $data;
-	}
+		// Khởi tạo CURL
+		$ch = curl_init($url);
+
+		// Thiết lập có return
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$result = curl_exec($ch);
+
+		curl_close($ch);
+
+		echo $result;
+	} 
+
 
 	
 }

@@ -5,6 +5,42 @@ class Order extends Model
 	var $table = "orders";
 	var $contens = "idOrder";
 
+	public function create_full($dataOrder, $dataOrderDetails){
+		$f_order = "";
+        $v_order = "";
+        foreach($dataOrder as $key => $value){
+            $f_order .= $key . ",";
+            $v_order .= "'" . $value . "',";
+        }
+        $f_order = trim($f_order, ",");
+        $v_order = trim($v_order, ",");
+
+        $f_orderDetails = "";
+        $v_orderDetails = "";
+        foreach($dataOrderDetails as $key => $value){
+            $f_orderDetails .= $key . ",";
+            $v_orderDetails .= "'" . $value . "',";
+        }
+        $f_orderDetails = trim($f_orderDetails, ",");
+        $v_orderDetails = trim($v_orderDetails, ",");
+
+        $query_1 = "INSERT INTO orders($f_order) VALUES ($v_order);";
+        if($this->conn->query($query_1)){
+            //$v_account .= ', idUser = '.;
+            $query_2 = "insert into orderdetails(idOrder, $f_orderDetails) VALUES ( (SELECT max(idOrder) FROM orders), $v_orderDetails);";
+            $status = $this->conn->query($query_2);
+        }
+
+        if(isset($status) && $status == true){
+            setcookie('msg', 'Thêm thành công', time()+2);
+            //header('Location: ?mod='.$this->table);
+        } else{
+            setcookie('msg', 'Thêm không thành công', time() + 2);
+            //header('Location: google.com);
+        }
+        return $status;
+	}
+
 	public function delete_details($idOrder){
 		// $query = "DELETE FROM orders WHERE idOrder = $idOrder;
 		// 			DELETE FROM orderdetails WHERE idOrder = $idOrder;";

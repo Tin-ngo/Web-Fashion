@@ -7,6 +7,18 @@ switch($act){
 	case "cuahang":
 		require "cuahang.php";
 		break;
+	case "details":
+		require "details.php";
+		break;
+	case "cart":
+		require "cart.php";
+		break;
+	case "pay":
+		require "pay.php";
+		break;
+	case "orderDone":
+		require "orderDone.php";
+		break;
 	default:
 		require "home.php";
 		break;

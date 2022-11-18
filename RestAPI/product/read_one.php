@@ -8,7 +8,7 @@ $product_obj = new Product();
 
 $id = isset($_GET['id'])?$_GET['id']:null;
 if(!empty($id)){
-	$data = $product_obj->find($id);
+	$data = $product_obj->findFull($id);
 	if(empty($data))
 		$product_obj->deliver_response(200, "Dữ liệu nhận về rỗng, không tìm thấy dữ liệu nào", null);
 	else

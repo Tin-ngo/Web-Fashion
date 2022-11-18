@@ -5,6 +5,58 @@ class Product extends Model
 	var $table = "product";
 	var $contens = "idProduct";
 
+	public function similar_product($idProduct){
+		$query = "SELECT * FROM product 
+					INNER JOIN quantity ON product.idQuantity = quantity.idQuantity 
+					INNER JOIN size ON quantity.idSize = size.idSize 
+					INNER JOIN color ON quantity.idColor = color.idcolor 
+					LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
+						FROM image WHERE image.isMain = 1) as image 
+						ON product.idProduct = image.idPro 
+					WHERE NOT product.idProduct = $idProduct
+						AND product.idBrand = (SELECT idBrand FROM product 
+												WHERE idProduct =$idProduct) LIMIT 2";
+		$result = $this->conn->query($query);
+		$data = array();
+		while($row = $result->fetch_assoc()){
+			$data[] = $row;
+		}
+		return $data;
+	}
+
+	public function findFull($id){
+		$query = "SELECT * FROM product 
+					INNER JOIN quantity ON product.idQuantity = quantity.idQuantity 
+					INNER JOIN size ON quantity.idSize = size.idSize
+					INNER JOIN color ON quantity.idColor = color.idcolor 
+					LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
+								FROM image WHERE image.isMain = 1) as image 
+					ON product.idProduct = image.idPro
+					WHERE product.idProduct = ".$id;
+		$result = $this->conn->query($query);
+		$data = array();
+		while($row = $result->fetch_assoc()){
+			$data[] = $row;
+		}
+		return $data;
+	}
+
+	public function searchFull($input){
+		$query = "SELECT * FROM product 
+					INNER JOIN quantity ON product.idQuantity = quantity.idQuantity 
+					INNER JOIN size ON quantity.idSize = size.idSize
+					INNER JOIN color ON quantity.idColor = color.idcolor 
+					LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
+								FROM image WHERE image.isMain = 1) as image 
+					ON product.idProduct = image.idPro
+					WHERE ".$input;
+		$result = $this->conn->query($query);
+		$data = array();
+		while($row = $result->fetch_assoc()){
+			$data[] = $row;
+		}
+		return $data;
+	}
 
 	function search_full($input){
 		$columnNames = $this->showAll_nameColumn();
@@ -35,10 +87,13 @@ class Product extends Model
 	// có bao gồm img
 	public function read_full(){
 		$query = "SELECT * FROM product 
-		LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
-			FROM image WHERE image.isMain = 1) as image 
-		ON product.idProduct = image.idPro 
-		ORDER BY product.idProduct ASC;";
+					INNER JOIN quantity ON product.idQuantity = quantity.idQuantity 
+					INNER JOIN size ON quantity.idSize = size.idSize
+					INNER JOIN color ON quantity.idColor = color.idcolor 
+					LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
+						FROM image WHERE image.isMain = 1) as image 
+						ON product.idProduct = image.idPro 
+					ORDER BY product.idProduct ASC;";
 
 		// thực thi câu lệnh truy vấn
 		$result = $this->conn->query($query);
@@ -158,13 +213,13 @@ class Product extends Model
 		}
 	}
 
-	public function topSelling(){
+	public function topSelling($num_limit){
 		$query = "SELECT * FROM product 
 		LEFT JOIN (SELECT idImg, idProduct AS idPro, image, isMain 
 			FROM image WHERE image.isMain = 1) as image 
 		ON product.idProduct = image.idPro 
 		ORDER BY product.productSold DESC
-		LIMIT 5";
+		LIMIT $num_limit";
 		$result = $this->conn->query($query);
 		$data = array();
 		while($row = $result->fetch_assoc()){

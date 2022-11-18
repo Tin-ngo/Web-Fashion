@@ -6,7 +6,9 @@ require_once "../model/image.php";
 $image_obj = new Image();
 
 $idProduct = isset($_POST['idProduct']) ? $_POST['idProduct'] : null;
-
+if($idProduct == null){
+	$idProduct = $_GET['idProduct'];
+}
 if(isset($idProduct)){
 	//$data = $image_obj->All();
 	$data = $image_obj->read_id($idProduct);

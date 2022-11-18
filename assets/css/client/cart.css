@@ -3,19 +3,17 @@
 
 .cart-top{
     text-align: center;
-    padding: 45px 0;
+    padding: 20px 0 12px 0;
     display: block;
 }
 
 .cart-top__head{
     font-size: 30px;
-    padding-bottom: 10px;
     font-weight: 500;
 }
 
 .cart-top__text{
     font-size: 14px;
-    padding-bottom: 10px;
 }
 
 .cart-top__block{
